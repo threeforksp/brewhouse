@@ -10,9 +10,13 @@ use libadwaita as adw;
 use std::cell::RefCell;
 use std::rc::Rc;
 
-const APP_ID: &str = "com.brewhouse.BrewHouse";
+const APP_ID: &str = "io.github.brewhouse.app";
 
 fn main() {
+    // Set program name before GTK init to control WM_CLASS
+    glib::set_prgname(Some("brewhouse"));
+    glib::set_application_name("BrewHouse");
+
     adw::init().expect("Failed to initialize libadwaita");
 
     if !brew::is_brew_installed() {
